@@ -157,7 +157,7 @@ main {
   font-size: 16px;
 }
 
-.bground, .bground-valid {
+.bground, .bground-validate {
   display: none;
   position: fixed;
   z-index: 1;
@@ -169,7 +169,7 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
-.content, .content-valid {
+.content, .content-validate {
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
@@ -188,7 +188,7 @@ main {
   margin: 15px auto;
 }
 
-.modal-body-valid {
+.modal-body-validate {
   height: 775px;
   width:500px;
   padding-top: 260px;
@@ -199,7 +199,7 @@ main {
   row-gap: 40%;
 }
 
-.modal-body-valid > p {
+.modal-body-validate > p {
   max-width: 316px;
   text-align: center;
   line-height: 52px;
@@ -207,7 +207,7 @@ main {
   font-weight: 300;
 }
 
-.modal-body-valid > button {
+.modal-body-validate > button {
   padding: 10px 66px;
 }
 
@@ -321,7 +321,7 @@ input[data-error]::after {
   left: 21%;
   top: 19%;
 }
-.close, .close-valid {
+.close, .close-validate {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -333,8 +333,8 @@ input[data-error]::after {
 }
 .close:before,
 .close:after, 
-.close-valid:before, 
-.close-valid:after {
+.close-validate:before, 
+.close-validate:after {
   position: absolute;
   left: 15px;
   content: " ";
@@ -342,10 +342,10 @@ input[data-error]::after {
   width: 3px;
   background-color: #fff;
 }
-.close:before, .close-valid:before {
+.close:before, .close-validate:before {
   transform: rotate(45deg);
 }
-.close:after, .close-valid:after {
+.close:after, .close-validate:after {
   transform: rotate(-45deg);
 }
 .btn-submit,
