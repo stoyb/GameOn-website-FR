@@ -213,7 +213,7 @@ main {
 
 
 
-label {
+label, #error-1, #error-2, #error-3, #error-4, #error-5, #error-6, #error-7 {
   font-family: var(--font-default);
   font-size: 17px;
   font-weight: normal;
@@ -555,3 +555,7 @@ footer {
   }
 }
 
+#error-1, #error-2, #error-3, #error-4, #error-5, #error-6, #error-7 {
+  display: none;
+  color: #fe142f;
+}
