@@ -507,6 +507,23 @@ footer {
   margin: 0 20px;
 }
 @media screen and (max-width: 800px) {
+  body {
+    display: grid;
+    place-content: center;
+  }
+  .topnav {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .content {
+    margin: 16% auto;
+  }
+  .header-logo > img {
+    width: 91%;
+    padding-left: 6%;
+    padding-bottom: 4%;
+  }
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -514,7 +531,15 @@ footer {
   .hero-content {
     background: #fff;
     color: #000;
-    padding: 20px;
+    padding: 0;
+  }
+  .main-navbar {
+    padding-top: 11px;
+  }
+  main {
+    display: grid;
+    justify-content: center;
+    max-width: 280px;
   }
   .hero-content::after {
     content: unset;
@@ -523,8 +548,11 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     white-space: normal;
+  }
+  h1, .hero-text {
+    max-width: 270px;
   }
   .hero-text {
     width: unset;
