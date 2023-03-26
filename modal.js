@@ -62,7 +62,16 @@ function modalValidate() {
   modalbgValidate.style.display = "block";
   modalbg.style.display = "none";
 }
-              
+ 
+function testInput(condition, errorMessage, error) {
+  if (condition) {
+    error = true; 
+    errorMessage.style.display = "block";
+  } else {
+    errorMessage.style.display = "none";
+  }
+  return error
+} 
 // Validate the submit and sends error messages 
 function validate(e) {
   e.preventDefault();
@@ -82,49 +91,71 @@ function validate(e) {
   let errorRadio = document.getElementById('error-6');
   let errorBox = document.getElementById('error-7');
   let error = false; 
-                
-  if (formFirst.length < 2 ) {
-    error = true;
-    errorFirst.style.display = "block";
-    } else {
-    errorFirst.style.display = "none";
-  }
-  if (formLast.length < 2 ) {
-    error = true;
-    errorLast.style.display = "block";
-    } else {
-    errorLast.style.display = "none";
-  }
-  if (checkEmail.exec(formEmail) == null) {
-    error = true;
-    errorEmail.style.display = "block";
-    } else {
-    errorEmail.style.display = "none";
-  }
-  if (formDate == "" ) {
-    error = true;
-    errorDate.style.display = "block";
-    } else {
-    errorDate.style.display = "none";
-  }
-  if (formQuantity == "" ) {
-    error = true;
-    errorQuantity.style.display = "block";
-    } else {
-    errorQuantity.style.display = "none";
-  }     
-  if (!checkRadio[0].checked && !checkRadio[1].checked && !checkRadio[2].checked &&!checkRadio[3].checked && !checkRadio[4].checked && !checkRadio[5].checked) {
-    error = true;
-    errorRadio.style.display = "block";
-    } else {
-    errorRadio.style.display = "none";
-  }
-  if (!checkbox.checked) {
-    error = true;
-    errorBox.style.display = "block";
-    } else {
-    errorBox.style.display = "none";
-  }
+  
+  // error = testInput(formFirst.length < 2, errorFirst, error);
+  // error = testInput(formLast.length < 2, errorLast, error);
+  // error = testInput(checkEmail.exec(formEmail) == null, errorEmail, error);
+  // error = testInput(formDate == "" , errorDate, error);
+  // error = testInput(formQuantity == "" , errorQuantity, error);
+  // error = testInput(!checkRadio[0].checked && !checkRadio[1].checked && !checkRadio[2].checked &&!checkRadio[3].checked && !checkRadio[4].checked && !checkRadio[5].checked, errorRadio, error);
+  // error = testInput(!checkbox.checked, errorBox, error);
+
+const listErrorsForm = [ 
+  [formFirst.length < 2, errorFirst],
+  [formLast.length < 2, errorLast],
+  [checkEmail.exec(formEmail) == null, errorEmail],
+  [formDate == "" , errorDate],
+  [formQuantity == "" , errorQuantity],
+  [!checkRadio[0].checked && !checkRadio[1].checked && !checkRadio[2].checked &&!checkRadio[3].checked && !checkRadio[4].checked && !checkRadio[5].checked, errorRadio],
+  [!checkbox.checked, errorBox]
+]
+
+listErrorsForm.forEach((errorForm)=> {
+  error = testInput(errorForm[0], errorForm[1], error)
+}) 
+
+  // if (formFirst.length < 2 ) {
+  //   error = true;
+  //   errorFirst.style.display = "block";
+  //   } else {
+  //   errorFirst.style.display = "none";
+  // }
+  // if (formLast.length < 2 ) {
+  //   error = true;
+  //   errorLast.style.display = "block";
+  //   } else {
+  //   errorLast.style.display = "none";
+  // }
+  // if (checkEmail.exec(formEmail) == null) {
+  //   error = true;
+  //   errorEmail.style.display = "block";
+  //   } else {
+  //   errorEmail.style.display = "none";
+  // }
+  // if (formDate == "" ) {
+  //   error = true;
+  //   errorDate.style.display = "block";
+  //   } else {
+  //   errorDate.style.display = "none";
+  // }
+  // if (formQuantity == "" ) {
+  //   error = true;
+  //   errorQuantity.style.display = "block";
+  //   } else {
+  //   errorQuantity.style.display = "none";
+  // }     
+  // if (!checkRadio[0].checked && !checkRadio[1].checked && !checkRadio[2].checked &&!checkRadio[3].checked && !checkRadio[4].checked && !checkRadio[5].checked) {
+  //   error = true;
+  //   errorRadio.style.display = "block";
+  //   } else {
+  //   errorRadio.style.display = "none";
+  // }
+  // if (!checkbox.checked) {
+  //   error = true;
+  //   errorBox.style.display = "block";
+  //   } else {
+  //   errorBox.style.display = "none";
+  // }
   if (!error)  {
     modalValidate();
   }
