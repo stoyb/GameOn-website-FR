@@ -77,85 +77,46 @@ function validate(e) {
   e.preventDefault();
   let formFirst = document.forms["reserve"]["first"].value;
   let formLast = document.forms["reserve"]["last"].value;
+  let checkName = /^[a-zA-Z ]+$/;
   let formEmail = document.forms["reserve"]["email"].value;
-  let checkEmail =  /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/
-  let formDate = document.forms["reserve"]["birthdate"].value; 
+  let checkEmail =  /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
+  let formDate = document.forms["reserve"]["birthdate"]; 
   let formQuantity = document.forms["reserve"]["quantity"].value; 
   let checkRadio = document.forms["reserve"]["location"]; 
   let checkbox = document.getElementById('checkbox1');
-  let errorFirst = document.getElementById('error-1');
-  let errorLast = document.getElementById('error-2');
+  let errorFirst1 = document.getElementById('error-1-1');
+  let errorFirst2 = document.getElementById('error-1-2');
+  let errorLast1 = document.getElementById('error-2-1');
+  let errorLast2 = document.getElementById('error-2-2');
   let errorEmail = document.getElementById('error-3');
-  let errorDate = document.getElementById('error-4');
+  let errorDate1 = document.getElementById('error-4-1');
+  let errorDate2 = document.getElementById('error-4-2');
   let errorQuantity = document.getElementById('error-5');
   let errorRadio = document.getElementById('error-6');
   let errorBox = document.getElementById('error-7');
   let error = false; 
-  
-  // error = testInput(formFirst.length < 2, errorFirst, error);
-  // error = testInput(formLast.length < 2, errorLast, error);
-  // error = testInput(checkEmail.exec(formEmail) == null, errorEmail, error);
-  // error = testInput(formDate == "" , errorDate, error);
-  // error = testInput(formQuantity == "" , errorQuantity, error);
-  // error = testInput(!checkRadio[0].checked && !checkRadio[1].checked && !checkRadio[2].checked &&!checkRadio[3].checked && !checkRadio[4].checked && !checkRadio[5].checked, errorRadio, error);
-  // error = testInput(!checkbox.checked, errorBox, error);
+  let dateNaissance = formDate.value;
+  let aujourdhui = new Date();
+  let anneeMin = aujourdhui.getFullYear() - 100;
+  let anneeMax = aujourdhui.getFullYear() - 18;
+  let dateNaissanceObj = new Date(dateNaissance);
 
 const listErrorsForm = [ 
-  [formFirst.length < 2, errorFirst],
-  [formLast.length < 2, errorLast],
+  [formFirst.length < 2, errorFirst1],
+  [checkName.exec(formFirst) == null, errorFirst2],
+  [formLast.length < 2, errorLast1],
+  [checkName.exec(formLast) == null, errorLast2],
   [checkEmail.exec(formEmail) == null, errorEmail],
-  [formDate == "" , errorDate],
+  [dateNaissanceObj.getFullYear() < anneeMin || dateNaissanceObj.getFullYear() > anneeMax, errorDate1],
+  [formDate.value == "" , errorDate2],
   [formQuantity == "" , errorQuantity],
   [!checkRadio[0].checked && !checkRadio[1].checked && !checkRadio[2].checked &&!checkRadio[3].checked && !checkRadio[4].checked && !checkRadio[5].checked, errorRadio],
   [!checkbox.checked, errorBox]
 ]
-
 listErrorsForm.forEach((errorForm)=> {
   error = testInput(errorForm[0], errorForm[1], error)
 }) 
 
-  // if (formFirst.length < 2 ) {
-  //   error = true;
-  //   errorFirst.style.display = "block";
-  //   } else {
-  //   errorFirst.style.display = "none";
-  // }
-  // if (formLast.length < 2 ) {
-  //   error = true;
-  //   errorLast.style.display = "block";
-  //   } else {
-  //   errorLast.style.display = "none";
-  // }
-  // if (checkEmail.exec(formEmail) == null) {
-  //   error = true;
-  //   errorEmail.style.display = "block";
-  //   } else {
-  //   errorEmail.style.display = "none";
-  // }
-  // if (formDate == "" ) {
-  //   error = true;
-  //   errorDate.style.display = "block";
-  //   } else {
-  //   errorDate.style.display = "none";
-  // }
-  // if (formQuantity == "" ) {
-  //   error = true;
-  //   errorQuantity.style.display = "block";
-  //   } else {
-  //   errorQuantity.style.display = "none";
-  // }     
-  // if (!checkRadio[0].checked && !checkRadio[1].checked && !checkRadio[2].checked &&!checkRadio[3].checked && !checkRadio[4].checked && !checkRadio[5].checked) {
-  //   error = true;
-  //   errorRadio.style.display = "block";
-  //   } else {
-  //   errorRadio.style.display = "none";
-  // }
-  // if (!checkbox.checked) {
-  //   error = true;
-  //   errorBox.style.display = "block";
-  //   } else {
-  //   errorBox.style.display = "none";
-  // }
   if (!error)  {
     modalValidate();
   }
